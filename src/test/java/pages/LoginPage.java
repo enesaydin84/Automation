@@ -23,6 +23,7 @@ public class LoginPage extends BasePage {
         page.click(loginButton);
         page.waitForTimeout(7);
         page.waitForTimeout(9);
+        page.waitForTimeout(3);
     }
 
     public String getErrorMessage() {
