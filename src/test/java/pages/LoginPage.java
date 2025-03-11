@@ -21,9 +21,6 @@ public class LoginPage extends BasePage {
         page.fill(usernameInput, username);
         page.fill(passwordInput, password);
         page.click(loginButton);
-        page.waitForTimeout(7);
-        page.waitForTimeout(9);
-        page.waitForTimeout(3);
     }
 
     public String getErrorMessage() {
