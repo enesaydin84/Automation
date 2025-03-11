@@ -22,7 +22,7 @@ public class LoginPage extends BasePage {
         page.fill(passwordInput, password);
         page.click(loginButton);
         page.waitForTimeout(1);
-        page.waitForTimeout(2);
+        page.waitForTimeout(4);
     }
 
     public String getErrorMessage() {
