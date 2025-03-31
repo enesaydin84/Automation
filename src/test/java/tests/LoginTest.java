@@ -30,4 +30,16 @@ public class LoginTest extends BaseTest {
 
         assertTrue(loginPage.getErrorMessage().contains("Sorry, this user has been locked out"));
     }
+
+    @Test
+    public void problemUser() throws InterruptedException {
+        LoginPage loginPage=new LoginPage(page);
+        ProductsPage productsPage=new ProductsPage(page);
+
+        loginPage.navigateToLoginPage();
+        loginPage.login("problem_user","secret_sauce");
+
+        assertTrue(productsPage.hasBreakImage());
+        System.out.println("Bozuk resim tespit edildi...");
+    }
 } 
