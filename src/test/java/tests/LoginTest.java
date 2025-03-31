@@ -40,6 +40,6 @@ public class LoginTest extends BaseTest {
         loginPage.login("problem_user","secret_sauce");
 
         assertTrue(productsPage.hasBreakImage());
-        System.out.println("Bozuk resim tespit edildi...");
+        System.out.println("Broken image detected...");
     }
 } 
