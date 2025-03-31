@@ -17,10 +17,11 @@ public class LoginPage extends BasePage {
         page.navigate("https://www.saucedemo.com/v1/");
     }
 
-    public void login(String username, String password) {
+    public void login(String username, String password) throws InterruptedException {
         page.fill(usernameInput, username);
         page.fill(passwordInput, password);
         page.click(loginButton);
+        Thread.sleep(3000);
     }
 
     public String getErrorMessage() {

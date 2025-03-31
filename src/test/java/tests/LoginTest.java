@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 public class LoginTest extends BaseTest {
     
     @Test
-    public void successfulLogin() {
+    public void successfulLogin() throws InterruptedException {
         LoginPage loginPage = new LoginPage(page);
         ProductsPage productsPage = new ProductsPage(page);
 
@@ -17,10 +17,12 @@ public class LoginTest extends BaseTest {
         loginPage.login("standard_user", "secret_sauce");
 
         assertEquals(productsPage.getTitle(), "Products");
+        System.out.println("Passed");
+        System.out.println("enes");
     }
 
     @Test
-    public void lockedOutUserLogin() {
+    public void lockedOutUserLogin() throws InterruptedException {
         LoginPage loginPage = new LoginPage(page);
 
         loginPage.navigateToLoginPage();
