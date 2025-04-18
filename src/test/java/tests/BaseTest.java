@@ -1,6 +1,7 @@
 package tests;
 
 import com.microsoft.playwright.*;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 public class BaseTest {
@@ -13,27 +14,34 @@ public class BaseTest {
     public void launchBrowser() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-                .setHeadless(false));
+                .setHeadless(false)  // Show browser window during test execution
+                .setTimeout(30000)); // Set timeout to 30 seconds
     }
 
     @AfterSuite
     public void closeBrowser() {
-        try {
-            Thread.sleep(3000); // 3 second wait before closing
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if (playwright != null) {
+            playwright.close();
         }
-        playwright.close();
     }
 
     @BeforeMethod
     public void createContext() {
-        context = browser.newContext();
+        context = browser.newContext(new Browser.NewContextOptions()
+                .setViewportSize(1920, 1080));
         page = context.newPage();
+        page.setDefaultNavigationTimeout(15000);  // Set navigation timeout to 15 seconds
     }
 
     @AfterMethod
-    public void closeContext() {
-        context.close();
+    public void closeContext(ITestResult result) {
+        try {
+            Thread.sleep(3000); // Wait for 3 seconds after each test
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (context != null) {
+            context.close();
+        }
     }
 } 

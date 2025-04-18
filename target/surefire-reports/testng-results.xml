@@ -1,45 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-03-10T11:40:05 TRT" name="Sauce Demo Test Suite" finished-at="2025-03-10T11:40:08 TRT" duration-ms="3460">
+  <suite started-at="2025-04-18T17:16:38 TRT" name="Sauce Demo Test Suite" finished-at="2025-04-18T17:16:52 TRT" duration-ms="13766">
     <groups>
     </groups>
-    <test started-at="2025-03-10T11:40:05 TRT" name="Login Tests" finished-at="2025-03-10T11:40:08 TRT" duration-ms="3460">
+    <test started-at="2025-04-18T17:16:38 TRT" name="Login Tests" finished-at="2025-04-18T17:16:52 TRT" duration-ms="13766">
       <class name="tests.LoginTest">
-        <test-method is-config="true" signature="launchBrowser()[pri:0, instance:tests.LoginTest@67a20f67]" started-at="2025-03-10T11:37:35 TRT" name="launchBrowser" finished-at="2025-03-10T11:40:05 TRT" duration-ms="149333" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchBrowser -->
-        <test-method is-config="true" signature="createContext()[pri:0, instance:tests.LoginTest@67a20f67]" started-at="2025-03-10T11:40:05 TRT" name="createContext" finished-at="2025-03-10T11:40:06 TRT" duration-ms="847" status="PASS">
+        <test-method is-config="true" signature="createContext()[pri:0, instance:tests.LoginTest@27ce24aa]" started-at="2025-04-18T17:16:38 TRT" name="createContext" finished-at="2025-04-18T17:16:39 TRT" duration-ms="857" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createContext -->
-        <test-method signature="lockedOutUserLogin()[pri:0, instance:tests.LoginTest@67a20f67]" started-at="2025-03-10T11:40:06 TRT" name="lockedOutUserLogin" finished-at="2025-03-10T11:40:07 TRT" duration-ms="1080" status="PASS">
+        <test-method signature="lockedOutUserLogin()[pri:0, instance:tests.LoginTest@27ce24aa]" started-at="2025-04-18T17:16:39 TRT" name="lockedOutUserLogin" description="Verify locked out user cannot login" finished-at="2025-04-18T17:16:40 TRT" duration-ms="880" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- lockedOutUserLogin -->
-        <test-method is-config="true" signature="closeContext()[pri:0, instance:tests.LoginTest@67a20f67]" started-at="2025-03-10T11:40:07 TRT" name="closeContext" finished-at="2025-03-10T11:40:07 TRT" duration-ms="62" status="PASS">
+        <test-method is-config="true" signature="closeContext(org.testng.ITestResult)[pri:0, instance:tests.LoginTest@27ce24aa]" started-at="2025-04-18T17:16:40 TRT" name="closeContext" finished-at="2025-04-18T17:16:43 TRT" duration-ms="3097" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=lockedOutUserLogin status=SUCCESS method=LoginTest.lockedOutUserLogin()[pri:0, instance:tests.LoginTest@27ce24aa] output={null}]]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeContext -->
-        <test-method is-config="true" signature="createContext()[pri:0, instance:tests.LoginTest@67a20f67]" started-at="2025-03-10T11:40:07 TRT" name="createContext" finished-at="2025-03-10T11:40:07 TRT" duration-ms="568" status="PASS">
+        <test-method is-config="true" signature="createContext()[pri:0, instance:tests.LoginTest@27ce24aa]" started-at="2025-04-18T17:16:43 TRT" name="createContext" finished-at="2025-04-18T17:16:43 TRT" duration-ms="664" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createContext -->
-        <test-method signature="successfulLogin()[pri:0, instance:tests.LoginTest@67a20f67]" started-at="2025-03-10T11:40:07 TRT" name="successfulLogin" finished-at="2025-03-10T11:40:08 TRT" duration-ms="759" status="PASS">
+        <test-method signature="problemUser()[pri:0, instance:tests.LoginTest@27ce24aa]" started-at="2025-04-18T17:16:43 TRT" name="problemUser" description="Verify problem user sees broken images" finished-at="2025-04-18T17:16:44 TRT" duration-ms="821" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- successfulLogin -->
-        <test-method is-config="true" signature="closeContext()[pri:0, instance:tests.LoginTest@67a20f67]" started-at="2025-03-10T11:40:08 TRT" name="closeContext" finished-at="2025-03-10T11:40:08 TRT" duration-ms="44" status="PASS">
+        </test-method> <!-- problemUser -->
+        <test-method is-config="true" signature="closeContext(org.testng.ITestResult)[pri:0, instance:tests.LoginTest@27ce24aa]" started-at="2025-04-18T17:16:44 TRT" name="closeContext" finished-at="2025-04-18T17:16:47 TRT" duration-ms="3049" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=problemUser status=SUCCESS method=LoginTest.problemUser()[pri:0, instance:tests.LoginTest@27ce24aa] output={null}]]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeContext -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.LoginTest@67a20f67]" started-at="2025-03-10T11:40:09 TRT" name="closeBrowser" finished-at="2025-03-10T11:40:10 TRT" duration-ms="1088" status="PASS">
+        <test-method is-config="true" signature="createContext()[pri:0, instance:tests.LoginTest@27ce24aa]" started-at="2025-04-18T17:16:47 TRT" name="createContext" finished-at="2025-04-18T17:16:48 TRT" duration-ms="649" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createContext -->
+        <test-method signature="successfulLogin()[pri:0, instance:tests.LoginTest@27ce24aa]" started-at="2025-04-18T17:16:48 TRT" name="successfulLogin" description="Verify successful login with standard user" finished-at="2025-04-18T17:16:49 TRT" duration-ms="596" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- successfulLogin -->
+        <test-method is-config="true" signature="closeContext(org.testng.ITestResult)[pri:0, instance:tests.LoginTest@27ce24aa]" started-at="2025-04-18T17:16:49 TRT" name="closeContext" finished-at="2025-04-18T17:16:52 TRT" duration-ms="3059" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=successfulLogin status=SUCCESS method=LoginTest.successfulLogin()[pri:0, instance:tests.LoginTest@27ce24aa] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeContext -->
+      </class> <!-- tests.LoginTest -->
+      <class name="tests.BaseTest">
+        <test-method is-config="true" signature="launchBrowser()[pri:0, instance:tests.BaseTest@3911c2a7]" started-at="2025-04-18T17:16:14 TRT" name="launchBrowser" finished-at="2025-04-18T17:16:38 TRT" duration-ms="23774" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.BaseTest@3911c2a7]" started-at="2025-04-18T17:16:52 TRT" name="closeBrowser" finished-at="2025-04-18T17:16:53 TRT" duration-ms="1170" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-      </class> <!-- tests.LoginTest -->
+      </class> <!-- tests.BaseTest -->
     </test> <!-- Login Tests -->
   </suite> <!-- Sauce Demo Test Suite -->
 </testng-results>

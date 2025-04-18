@@ -15,16 +15,17 @@ public class LoginPage extends BasePage {
 
     public void navigateToLoginPage() {
         page.navigate("https://www.saucedemo.com/v1/");
+        waitForElementToBeVisible(usernameInput);
     }
 
-    public void login(String username, String password) throws InterruptedException {
-        page.fill(usernameInput, username);
-        page.fill(passwordInput, password);
-        page.click(loginButton);
-        Thread.sleep(3000);
+    public void login(String username, String password) {
+        fill(usernameInput, username);
+        fill(passwordInput, password);
+        click(loginButton);
     }
 
     public String getErrorMessage() {
+        waitForElementToBeVisible(errorMessage);
         return page.textContent(errorMessage);
     }
 } 

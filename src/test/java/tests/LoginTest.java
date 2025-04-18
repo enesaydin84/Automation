@@ -8,8 +8,8 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
     
-    @Test
-    public void successfulLogin() throws InterruptedException {
+    @Test(description = "Verify successful login with standard user")
+    public void successfulLogin() {
         LoginPage loginPage = new LoginPage(page);
         ProductsPage productsPage = new ProductsPage(page);
 
@@ -17,12 +17,10 @@ public class LoginTest extends BaseTest {
         loginPage.login("standard_user", "secret_sauce");
 
         assertEquals(productsPage.getTitle(), "Products");
-        System.out.println("Passed");
-        System.out.println("enes");
     }
 
-    @Test
-    public void lockedOutUserLogin() throws InterruptedException {
+    @Test(description = "Verify locked out user cannot login")
+    public void lockedOutUserLogin() {
         LoginPage loginPage = new LoginPage(page);
 
         loginPage.navigateToLoginPage();
@@ -31,15 +29,14 @@ public class LoginTest extends BaseTest {
         assertTrue(loginPage.getErrorMessage().contains("Sorry, this user has been locked out"));
     }
 
-    @Test
-    public void problemUser() throws InterruptedException {
-        LoginPage loginPage=new LoginPage(page);
-        ProductsPage productsPage=new ProductsPage(page);
+    @Test(description = "Verify problem user sees broken images")
+    public void problemUser() {
+        LoginPage loginPage = new LoginPage(page);
+        ProductsPage productsPage = new ProductsPage(page);
 
         loginPage.navigateToLoginPage();
-        loginPage.login("problem_user","secret_sauce");
+        loginPage.login("problem_user", "secret_sauce");
 
         assertTrue(productsPage.hasBreakImage());
-        System.out.println("Broken image detected...");
     }
 } 
