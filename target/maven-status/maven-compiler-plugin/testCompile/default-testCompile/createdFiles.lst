@@ -1,5 +1,0 @@
-pages\BasePage.class
-pages\ProductsPage.class
-tests\BaseTest.class
-tests\LoginTest.class
-pages\LoginPage.class
