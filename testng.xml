@@ -4,9 +4,10 @@
     <listeners>
         <listener class-name="utils.TestListener"/>
     </listeners>
-    <test name="Login Tests">
+    <test name="Functional Tests">
         <classes>
             <class name="tests.LoginTest"/>
+            <class name="tests.ScrollTest"/>
         </classes>
     </test>
 </suite> 
