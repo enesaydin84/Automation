@@ -1,5 +1,7 @@
+utils\TestListener.class
 pages\BasePage.class
 pages\ProductsPage.class
+pages\LoginPage.class
 tests\BaseTest.class
 tests\LoginTest.class
-pages\LoginPage.class
+utils\ExtentManager.class
