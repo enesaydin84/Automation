@@ -20,21 +20,25 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
+
         test.get().log(Status.PASS, "Test passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
+
         test.get().fail(result.getThrowable());
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
+
         test.get().skip(result.getThrowable());
     }
 
     @Override
     public void onFinish(ITestContext context) {
+
         extent.flush();
     }
 } 

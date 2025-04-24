@@ -7,18 +7,22 @@ public class BasePage {
     public static Page page;
 
     public BasePage(Page page) {
+
         BasePage.page = page;
     }
 
     public void fill(String locator, String value) {
+
         page.waitForSelector(locator).fill(value);
     }
 
     public void click(String locator) {
+
         page.waitForSelector(locator).click();
     }
 
     public void waitForElement(String locator) {
+
         page.waitForSelector(locator);
     }
 

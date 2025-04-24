@@ -1,11 +1,9 @@
 package factory;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserContext;
+import com.microsoft.playwright.*;
 import com.microsoft.playwright.BrowserType.LaunchOptions;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
 
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -45,29 +43,23 @@ public class PlaywrightFactory {
 
     public Page initBrowser(Properties prop) {
         String browserName=prop.getProperty("browser").trim();
-        System.out.println("browser name is " + browserName);
 
-        //playwright = Playwright.create();
         tlPlaywright.set(Playwright.create());
 
         switch (browserName.toLowerCase()) {
             case "chromium":
-                //browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
                 tlBrowser.set(getPlaywright().chromium().launch(new LaunchOptions().setHeadless(false)));
                 break;
 
             case "firefox":
-                //browser = playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false));
                 tlBrowser.set(getPlaywright().firefox().launch(new LaunchOptions().setHeadless(false)));
                 break;
 
             case "safari":
-                //browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false));
                 tlBrowser.set(getPlaywright().webkit().launch(new LaunchOptions().setHeadless(false)));
                 break;
 
             case "chrome":
-                //browser = playwright.chromium().launch(new LaunchOptions().setChannel("chrome").setHeadless(false));
                 tlBrowser.set(getPlaywright().chromium().launch(new LaunchOptions().setChannel("chrome").setHeadless(false)));
                 break;
 
@@ -76,15 +68,22 @@ public class PlaywrightFactory {
                 throw new IllegalArgumentException("Unsupported browser: " + browserName);
         }
 
-        //browserContext = browser.newContext();
-        tlBrowserContext.set(getBrowser().newContext());
+        tlBrowserContext.set(getBrowser().newContext(new Browser.NewContextOptions()
+            .setViewportSize(
+                Integer.parseInt(prop.getProperty("width").trim()),
+                Integer.parseInt(prop.getProperty("height").trim())
+            )));
 
-        //page = browserContext.newPage();
+        // Trace'i başlat
+        getBrowserContext().tracing().start(new Tracing.StartOptions()
+                .setScreenshots(true)
+                .setSnapshots(true)
+                .setSources(true));
+
         tlPage.set(getBrowserContext().newPage());
-
-        //page.navigate(prop.getProperty("url"));
         getPage().navigate(prop.getProperty("url").trim(),new Page.NavigateOptions().setTimeout(60000));
         return getPage();
+
     }
 
     public Properties init_prop()  {
