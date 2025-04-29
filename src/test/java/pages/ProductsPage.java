@@ -4,7 +4,7 @@ import com.microsoft.playwright.Page;
 
 public class ProductsPage extends BasePage {
     // Locators
-    private String productsTitle = ".title";
+    private String productsTitle = ".product_label";
     private String addToCartButton = "//button[text()='ADD TO CART']";
     private String shoppingCartBadge = ".shopping_cart_badge";
     private String breakImages = "//img[contains(@src,'Break')]";
