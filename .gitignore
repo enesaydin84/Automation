@@ -1,0 +1,38 @@
+# IntelliJ IDEA dosyaları
+.idea/
+*.iml
+
+# Derleme çıktıları
+target/
+out/
+
+# Java derleme dosyaları
+*.class
+
+# Log dosyaları
+*.log
+
+# Maven
+.mvn/
+!**/src/main/**/maven-wrapper.jar
+
+# Test raporları
+surefire-reports/
+test-output/
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
+
+# Geçici dosyalar
+*.tmp
+*.swp
+*.bak
+
+# IDE ayarları
+*.iws
+*.ipr
+
+# Windows klasör dosyaları
+ehthumbs.db
+Desktop.ini
