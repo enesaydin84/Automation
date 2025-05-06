@@ -19,7 +19,6 @@ out/
 # Test raporları
 surefire-reports/
 test-output/
-target/
 
 # Sistem dosyaları
 .DS_Store
