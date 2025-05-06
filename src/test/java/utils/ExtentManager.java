@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class ExtentManager {
     private static ExtentReports extent;
-    
+
     public static ExtentReports getInstance() {
         if (extent == null) {
             // Tarih formatlı rapor ismi oluştur
@@ -20,7 +20,7 @@ public class ExtentManager {
         }
         return extent;
     }
-    
+
     private static ExtentReports createInstance(String fileName) {
         // Test Report klasörü oluştur
         String reportFolder = "test-output/testReport/";
@@ -33,12 +33,12 @@ public class ExtentManager {
         sparkReporter.config().setDocumentTitle("Test Automation Report");
         sparkReporter.config().setEncoding("utf-8");
         sparkReporter.config().setReportName("Sauce Demo Test Report - " + new SimpleDateFormat("yyyy/MM/dd HH:mm").format(new Date()));
-        
+
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
         extent.setSystemInfo("OS", System.getProperty("os.name"));
         extent.setSystemInfo("Java Version", System.getProperty("java.version"));
-        
+
         return extent;
     }
-} 
+}
