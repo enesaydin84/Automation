@@ -41,8 +41,6 @@ public class ExtentManager {
 
         return extent;
     }
-<<<<<<< HEAD
     //kadir
-=======
->>>>>>> main
+
 }
