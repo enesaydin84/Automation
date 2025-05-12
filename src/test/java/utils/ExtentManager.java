@@ -38,8 +38,11 @@ public class ExtentManager {
         extent.attachReporter(sparkReporter);
         extent.setSystemInfo("OS", System.getProperty("os.name"));
         extent.setSystemInfo("Java Version", System.getProperty("java.version"));
-        
+
         return extent;
     }
+<<<<<<< HEAD
     //kadir
+=======
+>>>>>>> main
 }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-05-06T14:50:14 TRT" name="Sauce Demo Test Suite" finished-at="2025-05-06T14:50:39 TRT" duration-ms="25250">
+    <groups>
+    </groups>
+    <test started-at="2025-05-06T14:50:14 TRT" name="Functional Tests" finished-at="2025-05-06T14:50:39 TRT" duration-ms="25250">
+      <class name="tests.LoginTest">
+        <test-method is-config="true" signature="init()[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:14 TRT" name="init" finished-at="2025-05-06T14:50:14 TRT" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method is-config="true" signature="setupTest()[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:14 TRT" name="setupTest" finished-at="2025-05-06T14:50:20 TRT" duration-ms="6781" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupTest -->
+        <test-method signature="lockedOutUserLogin()[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:20 TRT" name="lockedOutUserLogin" description="Verify locked out user cannot login" finished-at="2025-05-06T14:50:21 TRT" duration-ms="524" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- lockedOutUserLogin -->
+        <test-method is-config="true" signature="tearDownTest(org.testng.ITestResult)[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:21 TRT" name="tearDownTest" finished-at="2025-05-06T14:50:21 TRT" duration-ms="510" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=lockedOutUserLogin status=SUCCESS method=LoginTest.lockedOutUserLogin()[pri:0, instance:tests.LoginTest@4681c175] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownTest -->
+        <test-method is-config="true" signature="setupTest()[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:21 TRT" name="setupTest" finished-at="2025-05-06T14:50:25 TRT" duration-ms="3220" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupTest -->
+        <test-method signature="problemUser()[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:25 TRT" name="problemUser" description="Verify problem user sees broken images" finished-at="2025-05-06T14:50:26 TRT" duration-ms="1040" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- problemUser -->
+        <test-method is-config="true" signature="tearDownTest(org.testng.ITestResult)[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:26 TRT" name="tearDownTest" finished-at="2025-05-06T14:50:26 TRT" duration-ms="488" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=problemUser status=SUCCESS method=LoginTest.problemUser()[pri:0, instance:tests.LoginTest@4681c175] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownTest -->
+        <test-method is-config="true" signature="setupTest()[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:26 TRT" name="setupTest" finished-at="2025-05-06T14:50:30 TRT" duration-ms="3562" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupTest -->
+        <test-method signature="successfulLogin()[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:30 TRT" name="successfulLogin" description="Verify successful login with standard user" finished-at="2025-05-06T14:50:31 TRT" duration-ms="1555" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- successfulLogin -->
+        <test-method is-config="true" signature="tearDownTest(org.testng.ITestResult)[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:31 TRT" name="tearDownTest" finished-at="2025-05-06T14:50:32 TRT" duration-ms="686" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=successfulLogin status=SUCCESS method=LoginTest.successfulLogin()[pri:0, instance:tests.LoginTest@4681c175] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginTest@4681c175]" started-at="2025-05-06T14:50:39 TRT" name="tearDown" finished-at="2025-05-06T14:50:39 TRT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.LoginTest -->
+      <class name="tests.ScrollTest">
+        <test-method is-config="true" signature="setupTest()[pri:0, instance:tests.ScrollTest@1caa0244]" started-at="2025-05-06T14:50:32 TRT" name="setupTest" finished-at="2025-05-06T14:50:35 TRT" duration-ms="3172" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupTest -->
+        <test-method signature="validateScrollFunctionality()[pri:0, instance:tests.ScrollTest@1caa0244]" started-at="2025-05-06T14:50:35 TRT" name="validateScrollFunctionality" description="Verify page scrolling functionality" finished-at="2025-05-06T14:50:38 TRT" duration-ms="3064" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateScrollFunctionality -->
+        <test-method is-config="true" signature="tearDownTest(org.testng.ITestResult)[pri:0, instance:tests.ScrollTest@1caa0244]" started-at="2025-05-06T14:50:38 TRT" name="tearDownTest" finished-at="2025-05-06T14:50:39 TRT" duration-ms="614" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validateScrollFunctionality status=SUCCESS method=ScrollTest.validateScrollFunctionality()[pri:0, instance:tests.ScrollTest@1caa0244] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownTest -->
+      </class> <!-- tests.ScrollTest -->
+    </test> <!-- Functional Tests -->
+  </suite> <!-- Sauce Demo Test Suite -->
+</testng-results>
