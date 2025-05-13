@@ -3,6 +3,7 @@
 <suite name="Sauce Demo Test Suite">
     <listeners>
         <listener class-name="utils.TestListener"/>
+        <listener class-name="utils.RetryListener"/>
     </listeners>
     <test name="Functional Tests">
         <classes>
