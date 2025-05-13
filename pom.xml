@@ -70,8 +70,11 @@
                 <version>3.2.3</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>${project.basedir}/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>
+                        -Dfile.encoding=UTF-8
+                    </argLine>
                 </configuration>
             </plugin>
         </plugins>

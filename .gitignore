@@ -17,7 +17,7 @@ out/
 !**/src/main/**/maven-wrapper.jar
 
 # Test raporları
-surefire-reports/
+target/
 test-output/
 
 # Sistem dosyaları

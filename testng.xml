@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Sauce Demo Test Suite">
+<suite name="Sauce Demo Test Suite" parallel="classes" thread-count="1">
     <listeners>
         <listener class-name="utils.TestListener"/>
         <listener class-name="utils.RetryListener"/>
