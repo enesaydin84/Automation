@@ -15,27 +15,27 @@ import java.util.Date;
 import java.util.Properties;
 
 public class BaseTest {
-
-    protected static PlaywrightFactory pf;
-    protected static Page page;
     protected static Properties prop;
-    protected static LoginPage loginPage;
-    protected static ProductsPage productsPage;
-
+    protected LoginPage loginPage;
+    protected ProductsPage productsPage;
+    private PlaywrightFactory pf;  // ThreadLocal yerine sadece instance değişken
 
     @BeforeSuite
     public void init() {
+        // Properties'i bir kez yükle
         pf = new PlaywrightFactory();
         prop = pf.init_prop();
     }
 
     @BeforeMethod
     public void setupTest() {
-        // Her test için yeni bir browser başlat
-        page = pf.initBrowser(prop);
-        loginPage = new LoginPage(page);
-        productsPage = new ProductsPage(page);
+        // Her test için yeni bir PlaywrightFactory oluştur ve browser başlat
+        pf = new PlaywrightFactory();
+        pf.initBrowser(prop);
 
+        // Page object'leri oluştur (PlaywrightFactory static ThreadLocal'dan alıyor)
+        loginPage = new LoginPage(PlaywrightFactory.getPage());
+        productsPage = new ProductsPage(PlaywrightFactory.getPage());
     }
 
     @AfterMethod
@@ -43,16 +43,13 @@ public class BaseTest {
         try {
             // Test başarısız olduğunda screenshot al
             if (result.getStatus() == ITestResult.FAILURE) {
-                // Screenshot klasörünü oluştur
                 String screenshotFolder = "test-output/testReport/screenshots/";
                 new File(screenshotFolder).mkdirs();
 
-                // Screenshot dosya yolunu oluştur
                 String screenshotPath = screenshotFolder +
-                        new SimpleDateFormat("yyyyMMdd_hh_mm").format(new Date()) +result.getName() + ".png";
+                        new SimpleDateFormat("yyyyMMdd_hh_mm").format(new Date()) + result.getName() + ".png";
 
-                // Screenshot al
-                page.screenshot(new Page.ScreenshotOptions()
+                PlaywrightFactory.getPage().screenshot(new Page.ScreenshotOptions()
                         .setPath(Paths.get(screenshotPath))
                         .setFullPage(true));
             }
@@ -60,10 +57,11 @@ public class BaseTest {
             e.printStackTrace();
         } finally {
             // Trace'i kaydet
-            String tracePath=getTraceFilePath(result);
+            String tracePath = getTraceFilePath(result);
             PlaywrightFactory.getBrowserContext().tracing().stop(new Tracing.StopOptions()
                     .setPath(Paths.get(tracePath)));
-            // Her test sonrası kaynakları temizle
+
+            // Kaynakları temizle
             if (PlaywrightFactory.getBrowserContext() != null) {
                 PlaywrightFactory.getBrowserContext().close();
             }
@@ -78,15 +76,13 @@ public class BaseTest {
 
     @AfterSuite
     public void tearDown() {
-
         ExtentManager.getInstance().flush();
     }
-    public String getTraceFilePath(ITestResult result){
-        String baseDir="test-output/traces/";
-        String methodName=result.getMethod().getMethodName();
-        String date=new SimpleDateFormat("yyyyMMdd_hh_mm").format(new Date());
-        return baseDir+date+methodName+"-trace.zip";
-    }
-//kadir
 
-} 
+    public String getTraceFilePath(ITestResult result) {
+        String baseDir = "test-output/traces/";
+        String methodName = result.getMethod().getMethodName();
+        String date = new SimpleDateFormat("yyyyMMdd_hh_mm").format(new Date());
+        return baseDir + date + methodName + "-trace.zip";
+    }
+}

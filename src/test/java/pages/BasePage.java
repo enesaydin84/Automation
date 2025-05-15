@@ -32,10 +32,10 @@ public class BasePage {
 
     public boolean isVisible(String locator) {
         try {
-            return page.waitForSelector(locator, 
-                new Page.WaitForSelectorOptions()
-                    .setState(WaitForSelectorState.ATTACHED)
-                    .setTimeout(5000)
+            return page.waitForSelector(locator,
+                    new Page.WaitForSelectorOptions()
+                            .setState(WaitForSelectorState.ATTACHED)
+                            .setTimeout(5000)
             ) != null;
         } catch (Exception e) {
             return false;
