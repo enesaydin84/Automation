@@ -87,6 +87,6 @@ public class BaseTest {
         String date=new SimpleDateFormat("yyyyMMdd_hh_mm").format(new Date());
         return baseDir+date+methodName+"-trace.zip";
     }
-
+//kadir
 
 } 
