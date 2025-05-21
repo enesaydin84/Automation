@@ -4,12 +4,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasePage;
 import factory.PlaywrightFactory;
+import pages.LoginPage;
 
 public class ScrollTest extends BaseTest {
     
     @Test(description = "Verify page scrolling functionality")
     public void validateScrollFunctionality() {
         BasePage basePage = new BasePage(PlaywrightFactory.getPage());
+        LoginPage loginPage = new LoginPage(PlaywrightFactory.getPage());
 
         loginPage.navigateToLoginPage();
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));

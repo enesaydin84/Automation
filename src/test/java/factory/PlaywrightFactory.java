@@ -2,20 +2,13 @@ package factory;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.BrowserType.LaunchOptions;
-
-import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Base64;
+
 import java.util.Properties;
 
 public class PlaywrightFactory {
-    Playwright playwright;
-    Browser browser;
-    BrowserContext browserContext;
-    Page page;
     Properties prop;
 
     private static ThreadLocal<Browser> tlBrowser=new ThreadLocal<>();

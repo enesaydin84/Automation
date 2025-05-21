@@ -4,11 +4,11 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
 public class BasePage {
-    public static Page page;
+    protected Page page;
 
     public BasePage(Page page) {
 
-        BasePage.page = page;
+        this.page = page;
     }
 
     public void fill(String locator, String value) {
