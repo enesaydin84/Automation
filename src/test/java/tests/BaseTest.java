@@ -4,6 +4,7 @@ import com.microsoft.playwright.*;
 import factory.PlaywrightFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import utils.ExtentManager;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -62,7 +63,7 @@ public class BaseTest {
 
     @AfterSuite
     public void tearDown() {
-      //  ExtentManager.getInstance().flush();
+        ExtentManager.getInstance().flush();
     }
 
     public String getTraceFilePath(ITestResult result) {
