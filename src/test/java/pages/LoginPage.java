@@ -15,6 +15,7 @@ public class LoginPage extends BasePage {
     }
 
     public void navigateToLoginPage() {
+        //zaten test başında url e yönlendirildi. burda sadece bekliyor görünüyor mu die
         waitForElementToBeVisible(usernameInput);
     }
 

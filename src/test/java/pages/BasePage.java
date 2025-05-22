@@ -27,7 +27,8 @@ public class BasePage {
     }
 
     public void waitForElementToBeVisible(String locator) {
-        page.waitForSelector(locator, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.ATTACHED));
+        page.waitForSelector(
+                locator, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.ATTACHED));
     }
 
     public boolean isVisible(String locator) {

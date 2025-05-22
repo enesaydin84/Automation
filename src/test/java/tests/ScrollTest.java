@@ -5,6 +5,9 @@ import org.testng.annotations.Test;
 import pages.BasePage;
 import factory.PlaywrightFactory;
 import pages.LoginPage;
+import pages.ProductsPage;
+
+import java.util.Random;
 
 public class ScrollTest extends BaseTest {
     
@@ -40,5 +43,24 @@ public class ScrollTest extends BaseTest {
         // Verify we're back at the top
         Object finalPosition = PlaywrightFactory.getPage().evaluate("window.pageYOffset");
         Assert.assertEquals(finalPosition.toString(), "0", "Page should be back at the top");
+    }
+    @Test(description = "Add to Cart Control")
+    public void addProductControl() {
+        LoginPage loginPage = new LoginPage(PlaywrightFactory.getPage());
+        ProductsPage productsPage=new ProductsPage(PlaywrightFactory.getPage());
+
+        loginPage.navigateToLoginPage();
+        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+
+        Random random = new Random();
+        int productIndex = random.nextInt(5) + 1;
+        System.out.println(productIndex);
+        productsPage.addProductToCart(productIndex);
+        if(productsPage.getCartItemCount().equals("1")){
+            System.out.println(productsPage.getProductsName(productIndex)+"->Add to cart successful");
+        }
+        else
+            System.out.println(productsPage.getProductsName(productIndex)+"->Could not add to cart");
+
     }
 } 

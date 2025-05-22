@@ -8,6 +8,7 @@ public class ProductsPage extends BasePage {
     private String addToCartButton = "//button[text()='ADD TO CART']";
     private String shoppingCartBadge = ".shopping_cart_badge";
     private String breakImages = "//img[contains(@src,'Break')]";
+    private String inventoryİtemName=".inventory_item_name";
 
     public ProductsPage(Page page) {
 
@@ -28,6 +29,10 @@ public class ProductsPage extends BasePage {
         return page.textContent(shoppingCartBadge);
     }
 
+    public String getProductsName(int index) {
+        waitForElementToBeVisible(productsTitle);
+        return page.locator(inventoryİtemName).nth(index).innerText();
+    }
     public boolean hasBreakImage() {
 
         return isVisible(breakImages);
