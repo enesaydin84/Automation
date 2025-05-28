@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Sauce Demo Test Suite" parallel="methods" thread-count="5">
+    <listeners>
+        <listener class-name="utils.TestListener"/>
+        <listener class-name="utils.RetryListener"/>
+    </listeners>
+    <test name="Functional Tests">
+        <classes>
+            <class name="tests.LoginTest">
+                <methods>
+                    <include name="successfulLogin"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

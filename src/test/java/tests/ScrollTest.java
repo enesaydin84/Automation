@@ -1,5 +1,7 @@
 package tests;
 
+import Users.User;
+import Users.UserDataReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasePage;
@@ -16,8 +18,10 @@ public class ScrollTest extends BaseTest {
         BasePage basePage = new BasePage(PlaywrightFactory.getPage());
         LoginPage loginPage = new LoginPage(PlaywrightFactory.getPage());
 
+        User user = UserDataReader.getUser("standard_user");
+
         loginPage.navigateToLoginPage();
-        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+        loginPage.login(user.getUsername(),user.getPassword());
         
         // Get initial position (should be at top)
         Object initialPosition = PlaywrightFactory.getPage().evaluate("window.pageYOffset");
@@ -49,8 +53,10 @@ public class ScrollTest extends BaseTest {
         LoginPage loginPage = new LoginPage(PlaywrightFactory.getPage());
         ProductsPage productsPage=new ProductsPage(PlaywrightFactory.getPage());
 
+        User user = UserDataReader.getUser("standard_user");
+
         loginPage.navigateToLoginPage();
-        loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+        loginPage.login(user.getUsername(),user.getPassword());
 
         Random random = new Random();
         int productIndex = random.nextInt(5) + 1;

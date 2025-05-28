@@ -1,5 +1,7 @@
 package tests;
 
+import Users.User;
+import Users.UserDataReader;
 import factory.PlaywrightFactory;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -15,8 +17,10 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage(PlaywrightFactory.getPage());
         ProductsPage productsPage = new ProductsPage(PlaywrightFactory.getPage());
 
+        User user = UserDataReader.getUser("standard_user");
+
         loginPage.navigateToLoginPage();
-        loginPage.login(prop.getProperty("username"),prop.getProperty("password"));
+        loginPage.login(user.getUsername(),user.getPassword());
         assertEquals(productsPage.getTitle(), "Products");
     }
 
@@ -24,8 +28,10 @@ public class LoginTest extends BaseTest {
     public void lockedOutUserLogin() {
         LoginPage loginPage = new LoginPage(PlaywrightFactory.getPage());
 
+        User user = UserDataReader.getUser("locked_out_user");
+
         loginPage.navigateToLoginPage();
-        loginPage.login(prop.getProperty("locked_out_user"),prop.getProperty("password"));
+        loginPage.login(user.getUsername(),user.getPassword());
 
         assertTrue(loginPage.getErrorMessage().contains("Sorry, this user has been locked out"));
     }
@@ -35,8 +41,10 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage(PlaywrightFactory.getPage());
         ProductsPage productsPage = new ProductsPage(PlaywrightFactory.getPage());
 
+        User user = UserDataReader.getUser("problem_user");
+
         loginPage.navigateToLoginPage();
-        loginPage.login(prop.getProperty("problem_user"),prop.getProperty("password"));
+        loginPage.login(user.getUsername(),user.getPassword());
 
         assertTrue(productsPage.hasBreakImage());
     }

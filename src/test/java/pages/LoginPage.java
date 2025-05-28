@@ -2,9 +2,14 @@ package pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import utils.LogUtils;
 
 public class LoginPage extends BasePage {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginPage.class);
+
     // Locators
     private String usernameInput = "#user-name";
     private String passwordInput = "#password";
@@ -15,21 +20,50 @@ public class LoginPage extends BasePage {
     }
 
     public void navigateToLoginPage() {
-        //zaten test başında url e yönlendirildi. burda sadece bekliyor görünüyor mu die
-        waitForElementToBeVisible(usernameInput);
+        logger.info("Navigating to login page...");
+        try {
+            waitForElementToBeVisible(usernameInput);
+            logger.info("Username input is visible.");
+        } catch (Exception e) {
+            LogUtils.logSimpleException(logger, "Username input not found on the login page", e);
+            throw new RuntimeException("Login page could not be loaded properly.", e);
+        }
     }
+
 
     public void login(String username, String password) {
-        fill(usernameInput, username);
-        fill(passwordInput, password);
-        click(loginButton);
-        page.waitForLoadState(LoadState.NETWORKIDLE);
+        logger.info("Attempting to login with username: {}", username);
 
+        try {
+            fill(usernameInput, username);
+            logger.debug("Filled username.");
 
+            fill(passwordInput, password);
+            logger.debug("Filled password.");
+
+            click(loginButton);
+            logger.debug("Clicked login button.");
+
+            page.waitForLoadState(LoadState.NETWORKIDLE);
+            logger.info("Page load state: NETWORKIDLE after login attempt.");
+        } catch (Exception e) {
+            LogUtils.logSimpleException(logger, "Login failed for user '" + username + "'", e);
+            throw new RuntimeException("Login process failed", e);
+        }
     }
+
 
     public String getErrorMessage() {
-        waitForElementToBeVisible(errorMessage);
-        return page.textContent(errorMessage);
+        logger.debug("Retrieving error message...");
+        try {
+            waitForElementToBeVisible(errorMessage);
+            String message = page.textContent(errorMessage);
+            logger.info("Error message found: {}", message);
+            return message;
+        } catch (Exception e) {
+            LogUtils.logSimpleException(logger, "No error message found after login attempt", e);
+            return "";
+        }
     }
+
 } 

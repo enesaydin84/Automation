@@ -2,9 +2,14 @@ package pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import utils.LogUtils;
+
 
 public class BasePage {
     protected Page page;
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     public BasePage(Page page) {
 
@@ -12,24 +17,50 @@ public class BasePage {
     }
 
     public void fill(String locator, String value) {
-
-        page.waitForSelector(locator).fill(value);
+        try {
+            page.waitForSelector(locator).fill(value);
+            logger.info("Filled element '{}' with value '{}'", locator, value);
+        } catch (Exception e) {
+            LogUtils.logSimpleException(logger, "Failed to fill element: " + locator, e);
+            throw e;
+        }
     }
 
-    public void click(String locator) {
 
-        page.waitForSelector(locator).click();
+    public void click(String locator) {
+        try {
+            page.waitForSelector(locator).click();
+            logger.info("Clicked on element: {}", locator);
+        } catch (Exception e) {
+            LogUtils.logSimpleException(logger, "Failed to click element: " + locator, e);
+            throw e;
+        }
     }
 
     public void waitForElement(String locator) {
 
-        page.waitForSelector(locator);
+        try {
+            page.waitForSelector(locator);
+            logger.debug("Waited for element: {}", locator);
+        } catch (Exception e) {
+            LogUtils.logSimpleException(logger, "Failed to wait for element: " + locator, e);
+            throw e;
+        }
     }
 
     public void waitForElementToBeVisible(String locator) {
-        page.waitForSelector(
-                locator, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.ATTACHED));
+        try {
+            page.waitForSelector(
+                    locator,
+                    new Page.WaitForSelectorOptions().setState(WaitForSelectorState.ATTACHED)
+            );
+            logger.info("Element '{}' is visible on the page.", locator);
+        } catch (Exception e) {
+            LogUtils.logSimpleException(logger, "Failed waiting for visibility: " + locator, e);
+            throw e;
+        }
     }
+
 
     public boolean isVisible(String locator) {
         try {
@@ -39,6 +70,7 @@ public class BasePage {
                             .setTimeout(5000)
             ) != null;
         } catch (Exception e) {
+            LogUtils.logSimpleException(logger, "Visibility check failed for: " + locator, e);
             return false;
         }
     }
