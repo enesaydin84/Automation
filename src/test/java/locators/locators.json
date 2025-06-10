@@ -1,0 +1,15 @@
+{
+  "LoginPage": {
+    "usernameInput": "#user-name",
+    "passwordInput": "#password",
+    "loginButton": "#login-button",
+    "errorMessage": "[data-test='error']"
+  },
+  "ProductsPage": {
+    "productsTitle": ".product_label",
+    "addToCartButton": "//button[text()='ADD TO CART']",
+    "shoppingCartBadge": ".shopping_cart_badge",
+    "breakImages": "//img[contains(@src,'Break')]",
+    "inventoryItemName": ".inventory_item_name"
+  }
+}

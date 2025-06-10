@@ -2,6 +2,7 @@ package pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
+import locators.LocatorReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.LogUtils;
@@ -9,14 +10,18 @@ import utils.LogUtils;
 public class LoginPage extends BasePage {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginPage.class);
-
     // Locators
-    private String usernameInput = "#user-name";
-    private String passwordInput = "#password";
-    private String loginButton = "#login-button";
-    private String errorMessage = "[data-test='error']";
+    private String usernameInput;
+    private String passwordInput;
+    private String loginButton;
+    private String errorMessage;
     public LoginPage(Page page) {
+
         super(page);
+        this.usernameInput = getLocator("usernameInput");
+        this.passwordInput = getLocator("passwordInput");
+        this.loginButton = getLocator( "loginButton");
+        this.errorMessage = getLocator( "errorMessage");
     }
 
     public void navigateToLoginPage() {

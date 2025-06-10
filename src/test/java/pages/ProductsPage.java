@@ -1,23 +1,28 @@
 package pages;
 
 import com.microsoft.playwright.Page;
+import locators.LocatorReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.LogUtils;
 
 public class ProductsPage extends BasePage {
     private static final Logger logger = LoggerFactory.getLogger(ProductsPage.class);
-
     // Locators
-    private String productsTitle = ".product_label";
-    private String addToCartButton = "//button[text()='ADD TO CART']";
-    private String shoppingCartBadge = ".shopping_cart_badge";
-    private String breakImages = "//img[contains(@src,'Break')]";
-    private String inventoryItemName =".inventory_item_name";
+    private String productsTitle ;
+    private String addToCartButton ;
+    private String shoppingCartBadge ;
+    private String breakImages ;
+    private String inventoryItemName ;
 
     public ProductsPage(Page page) {
 
         super(page);
+        this.productsTitle =getLocator( "productsTitle");
+        this.addToCartButton = getLocator( "addToCartButton");
+        this.shoppingCartBadge = getLocator( "shoppingCartBadge");
+        this.breakImages = getLocator( "breakImages");
+        this.inventoryItemName = getLocator( "inventoryItemName");
     }
 
     public String getTitle() {

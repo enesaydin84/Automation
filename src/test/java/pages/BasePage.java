@@ -2,6 +2,7 @@ package pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import locators.LocatorReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.LogUtils;
@@ -15,6 +16,11 @@ public class BasePage {
 
         this.page = page;
     }
+    protected String getLocator(String elementName) {
+        String pageName = this.getClass().getSimpleName();
+        return LocatorReader.getLocator(pageName, elementName);
+    }
+
 
     public void fill(String locator, String value) {
         try {
