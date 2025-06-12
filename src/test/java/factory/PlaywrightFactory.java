@@ -10,6 +10,11 @@ public class PlaywrightFactory {
     private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
     private static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
     private static ThreadLocal<Page> tlPage = new ThreadLocal<>();
+    private static ThreadLocal<APIRequestContext> tlApiRequest = new ThreadLocal<>();
+
+    public static APIRequestContext getApiRequestContext() {
+        return tlApiRequest.get();
+    }
 
     public static Playwright getPlaywright() {
         return tlPlaywright.get();
@@ -63,5 +68,10 @@ public class PlaywrightFactory {
         tlPage.set(getBrowserContext().newPage());
         getPage().navigate(ConfigReader.get("url"));
         return getPage();
+    }
+    public static void initApiRequestContext() {
+        Playwright playwright = Playwright.create();
+        tlPlaywright.set(playwright);
+        tlApiRequest.set(playwright.request().newContext());
     }
 }
