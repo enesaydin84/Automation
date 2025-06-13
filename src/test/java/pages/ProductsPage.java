@@ -9,27 +9,18 @@ import utils.LogUtils;
 public class ProductsPage extends BasePage {
     private static final Logger logger = LoggerFactory.getLogger(ProductsPage.class);
     // Locators
-    private String productsTitle ;
-    private String addToCartButton ;
-    private String shoppingCartBadge ;
-    private String breakImages ;
-    private String inventoryItemName ;
+
 
     public ProductsPage(Page page) {
 
         super(page);
-        this.productsTitle =getLocator( "productsTitle");
-        this.addToCartButton = getLocator( "addToCartButton");
-        this.shoppingCartBadge = getLocator( "shoppingCartBadge");
-        this.breakImages = getLocator( "breakImages");
-        this.inventoryItemName = getLocator( "inventoryItemName");
     }
 
     public String getTitle() {
         logger.info("Getting page title from products page.");
         try {
-            waitForElementToBeVisible(productsTitle);
-            String title = page.textContent(productsTitle);
+            waitForElementToBeVisible(getLocator("productsTitle"));
+            String title = page.textContent(getLocator("productsTitle"));
             logger.info("Products page title: {}", title);
             return title;
         } catch (Exception e) {
@@ -42,7 +33,7 @@ public class ProductsPage extends BasePage {
     public void addProductToCart(int index) {
         logger.info("Adding product at index {} to cart.", index);
         try {
-            page.locator(addToCartButton).nth(index).click();
+            page.locator(getLocator("addToCartButton")).nth(index).click();
             logger.info("Product at index {} added to cart.", index);
         } catch (Exception e) {
             LogUtils.logSimpleException(logger, "Failed to add product at index " + index + " to cart", e);
@@ -54,8 +45,8 @@ public class ProductsPage extends BasePage {
     public String getCartItemCount() {
         logger.info("Getting shopping cart item count.");
         try {
-            waitForElementToBeVisible(shoppingCartBadge);
-            String count = page.textContent(shoppingCartBadge);
+            waitForElementToBeVisible(getLocator("shoppingCartBadge"));
+            String count = page.textContent(getLocator("shoppingCartBadge"));
             logger.info("Shopping cart has {} items.", count);
             return count;
         } catch (Exception e) {
@@ -68,8 +59,8 @@ public class ProductsPage extends BasePage {
     public String getProductsName(int index) {
         logger.info("Getting product name at index {}.", index);
         try {
-            waitForElementToBeVisible(productsTitle); // sayfa başlığı görünmeden ürünler görünmeyebilir
-            String name = page.locator(inventoryItemName ).nth(index).innerText();
+            waitForElementToBeVisible(getLocator("productsTitle"));
+            String name = page.locator(getLocator("inventoryItemName")).nth(index).innerText();
             logger.info("Product name at index {}: {}", index, name);
             return name;
         } catch (Exception e) {
@@ -81,7 +72,7 @@ public class ProductsPage extends BasePage {
     public boolean hasBreakImage() {
         logger.info("Checking for broken image elements on the products page.");
         try {
-            boolean visible = isVisible(breakImages);
+            boolean visible = isVisible(getLocator("breakImages"));
             if (visible) {
                 logger.warn("Broken image(s) found on the products page.");
             } else {
