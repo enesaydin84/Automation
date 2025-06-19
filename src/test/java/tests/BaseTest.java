@@ -77,6 +77,7 @@ public class BaseTest {
 
     @AfterSuite
     public void tearDownSuite() {
+
         ExtentManager.getInstance().flush();
     }
 
