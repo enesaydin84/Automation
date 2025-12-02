@@ -6,10 +6,10 @@
     "errorMessage": "[data-test='error']"
   },
   "ProductsPage": {
-    "productsTitle": ".product_label",
-    "addToCartButton": "//button[text()='ADD TO CART']",
+    "productsTitle": "//span[@class='title']",
+    "addToCartButton": "//button[text()='Add to cart']",
     "shoppingCartBadge": ".shopping_cart_badge",
-    "breakImages": "//img[contains(@src,'Break')]",
+    "breakImages": "//img[contains(@src,'sl-404')]",
     "inventoryItemName": ".inventory_item_name"
   }
 }
