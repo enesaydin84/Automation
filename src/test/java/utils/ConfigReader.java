@@ -17,7 +17,11 @@ public class ConfigReader {
     }
 
     public static String get(String key) {
-        return properties.getProperty(key).trim();
+        String value = properties.getProperty(key);
+        if (value == null) {
+            throw new RuntimeException("Key not found in config.properties -> " + key);
+        }
+        return value.trim();
     }
 
     public static int getInt(String key) {

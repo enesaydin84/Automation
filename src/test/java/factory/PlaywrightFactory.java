@@ -4,6 +4,8 @@ import com.microsoft.playwright.*;
 import com.microsoft.playwright.BrowserType.LaunchOptions;
 import utils.ConfigReader;
 
+import java.util.Map;
+
 public class PlaywrightFactory {
 
     private static ThreadLocal<Playwright> tlPlaywright = new ThreadLocal<>();
@@ -70,10 +72,5 @@ public class PlaywrightFactory {
         tlPage.set(getBrowserContext().newPage());
         getPage().navigate(ConfigReader.get("url"));
         return getPage();
-    }
-    public static void initApiRequestContext() {
-        Playwright playwright = Playwright.create();
-        tlPlaywright.set(playwright);
-        tlApiRequest.set(playwright.request().newContext());
     }
 }
