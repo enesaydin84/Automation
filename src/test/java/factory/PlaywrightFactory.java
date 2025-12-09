@@ -34,21 +34,23 @@ public class PlaywrightFactory {
 
     public Page initBrowser() {
         String browserName = ConfigReader.get("browser");
+        boolean headless = Boolean.parseBoolean(ConfigReader.get("headless"));
 
         tlPlaywright.set(Playwright.create());
+        LaunchOptions opts = new LaunchOptions().setHeadless(headless);
 
         switch (browserName.toLowerCase()) {
             case "chromium":
-                tlBrowser.set(getPlaywright().chromium().launch(new LaunchOptions().setHeadless(false)));
+                tlBrowser.set(getPlaywright().chromium().launch(opts));
                 break;
             case "firefox":
-                tlBrowser.set(getPlaywright().firefox().launch(new LaunchOptions().setHeadless(false)));
+                tlBrowser.set(getPlaywright().firefox().launch(opts));
                 break;
             case "safari":
-                tlBrowser.set(getPlaywright().webkit().launch(new LaunchOptions().setHeadless(false)));
+                tlBrowser.set(getPlaywright().webkit().launch(opts));
                 break;
             case "chrome":
-                tlBrowser.set(getPlaywright().chromium().launch(new LaunchOptions().setChannel("chrome").setHeadless(false)));
+                tlBrowser.set(getPlaywright().chromium().launch(opts.setChannel("chrome")));
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported browser: " + browserName);

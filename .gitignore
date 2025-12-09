@@ -12,6 +12,7 @@ out/
 # Log dosyaları
 *.log
 
+
 # Maven
 .mvn/
 !**/src/main/**/maven-wrapper.jar
