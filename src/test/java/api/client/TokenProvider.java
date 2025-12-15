@@ -1,66 +1,61 @@
 package api.client;
 
-import com.microsoft.playwright.APIRequestContext;
-import com.microsoft.playwright.APIResponse;
-import com.microsoft.playwright.options.RequestOptions;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import utils.LogUtils;
-import utils.ConfigReader;
+import api.config.ApiConfig;
+import api.models.requests.UserLoginRequest;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static io.restassured.RestAssured.given;
+
+/**
+ * Basit token alma ve önbellekleme katmanı.
+ * Thread-safe olması için ConcurrentHashMap + entry bazlı TTL kullanır.
+ */
 public class TokenProvider {
 
-    private static final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
-    private static final Map<String, String> tokenCache = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, CachedToken> cache = new ConcurrentHashMap<>();
+    // Örnek TTL: 50 dakika
+    private static final Duration TTL = Duration.ofMinutes(50);
 
-    public static String getToken(APIRequestContext api) {
-        String username = ConfigReader.get("auth.username");
-        String password = ConfigReader.get("auth.password");
-        return getToken(api, username, password);
-    }
-
-    public static String getToken(APIRequestContext api, String username, String password) {
-        if (tokenCache.containsKey(username)) {
-            logger.debug("Using cached token for user: {}", username);
-            return tokenCache.get(username);
+    public static String getToken() {
+        String key = ApiConfig.USERNAME;
+        CachedToken existing = cache.get(key);
+        if (existing != null && !existing.isExpired()) {
+            return existing.token();
         }
 
-        logger.info("Requesting new token for user: {}", username);
-        Map<String, String> payloadMap = new HashMap<>();
-        payloadMap.put("username", username);
-        payloadMap.put("password", password);
-
-        try {
-            APIResponse response = api.post("/auth/login",
-                    RequestOptions.create()
-                            .setHeader("Content-Type", "application/json")
-                            .setData(payloadMap));
-            String responseBody = response.text();
-            logger.info("Token API response: {}", responseBody);
-
-            if (response.ok()) {
-                JsonObject json = JsonParser.parseString(response.text()).getAsJsonObject();
-                String token = json.has("token") ? json.get("token").getAsString() : json.get("accessToken").getAsString();
-                tokenCache.put(username, token);
-                logger.info("Token successfully retrieved and cached for {}.", username);
-                return token;
-            } else {
-                logger.error("Failed to retrieve token. Status code: {}", response.status());
-                throw new RuntimeException("Token alınamadı! Status code: " + response.status());
-            }
-        } catch (Exception e) {
-            LogUtils.logSimpleException(logger, "Token alma sırasında hata oluştu", e);
-            throw new RuntimeException("Token alma işlemi başarısız", e);
-        }
+        String fresh = fetchToken(ApiConfig.USERNAME, ApiConfig.PASSWORD);
+        cache.put(key, new CachedToken(fresh, Instant.now()));
+        return fresh;
     }
 
-    public static void clearCache() {
-        tokenCache.clear();
+    private static String fetchToken(String username, String password) {
+        UserLoginRequest req = new UserLoginRequest(username, password);
+        Response res = given()
+                .baseUri(ApiConfig.BASE_URL)
+                .contentType(ContentType.JSON)
+                .body(req)
+                .post("/auth/login");
+
+        res.then().statusCode(200);
+        String token = res.jsonPath().getString("token");
+        if (token == null || token.isBlank()) {
+            token = res.jsonPath().getString("accessToken");
+        }
+        if (token == null || token.isBlank()) {
+            throw new IllegalStateException("Auth response did not contain token/accessToken. Body: " + res.getBody().asString());
+        }
+        return token;
+    }
+
+    private record CachedToken(String token, Instant createdAt) {
+        boolean isExpired() {
+            return Instant.now().isAfter(createdAt.plus(TTL));
+        }
     }
 }
+
